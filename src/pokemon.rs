@@ -120,8 +120,12 @@ pub fn create_all_pokemons(_pokemons: &JsonValue) -> Vec<Pokemon> {
         } else {
             Type::new(pokemon["type_2"]["id"].as_u32().unwrap(), pokemon["type_2"]["name"].as_str().unwrap().to_string(), pokemon["type_2"]["nom"].as_str().unwrap().to_string(), pokemon["type_2"]["gen"].as_u32().unwrap())
         },
-        Ability::new(pokemon["ability_1"]["id"].as_u32().unwrap(), pokemon["ability_1"]["nom"].as_str().unwrap().to_string(), pokemon["ability_1"]["name"].as_str().unwrap().to_string(), pokemon["ability_1"]["gen"].as_u32().unwrap()),
-        if pokemon["ability_2"].is_null() {
+    if pokemon["ability_1"].is_null() {
+        Ability::new(0, "".to_string(), "".to_string(), 0)
+        } else {
+            Ability::new(pokemon["ability_1"]["id"].as_u32().unwrap(), pokemon["ability_1"]["name"].as_str().unwrap().to_string(), pokemon["ability_1"]["nom"].as_str().unwrap().to_string(), pokemon["ability_1"]["gen"].as_u32().unwrap())
+        },
+         if pokemon["ability_2"].is_null() {
             Ability::new(0, "".to_string(), "".to_string(), 0)
         } else {
             Ability::new(pokemon["ability_2"]["id"].as_u32().unwrap(), pokemon["ability_2"]["nom"].as_str().unwrap().to_string(), pokemon["ability_2"]["name"].as_str().unwrap().to_string(), pokemon["ability_2"]["gen"].as_u32().unwrap())

@@ -22,6 +22,7 @@ pub fn print_in_file(filename: &str, line: &str, append: bool) {
 pub fn clear_file(filename: &str) {
     let mut file = fs::OpenOptions::new()
       .write(true)
+      .create(true)
       .truncate(true)
       .open(filename)
       .unwrap();
